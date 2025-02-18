@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">My Project</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                {% if not request.user.is_authenticated %}
+                    <!-- Show only Admin and Patient Login Links when not authenticated -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_login' %}">
+                            <i class="fas fa-user-shield"></i> Admin Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'patient_login' %}">
+                            <i class="fas fa-user-injured"></i> Patient Login
+                        </a>
+                    </li>
+                {% else %}
+                    <!-- Show other links when the user is authenticated -->
+                    <li class="nav-item"><a class="nav-link" href="/register/">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login/">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/patients/">Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/heart-rate/">Heart Rate</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
